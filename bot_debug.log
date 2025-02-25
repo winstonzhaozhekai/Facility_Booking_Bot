@@ -1,0 +1,681 @@
+2025-02-23 00:47:01,783 - __main__ - INFO - Bot is starting polling...
+2025-02-23 00:47:56,580 - __main__ - INFO - User 529222562 invoked /book
+2025-02-23 00:47:56,581 - __main__ - DEBUG - Fetching user info from Supabase for user_id=529222562
+2025-02-23 00:47:57,047 - __main__ - DEBUG - Supabase response for user info: [{'user_id': 529222562, 'role': 'admin', 'cca': 'NULL', 'created_at': None, 'updated_at': None, 'name': 'Jared Ee'}]
+2025-02-23 00:47:57,047 - __main__ - DEBUG - Fetching all venues from Supabase.
+2025-02-23 00:47:57,096 - __main__ - DEBUG - Fetched venues: [{'venue_id': 1, 'name': 'MPSH', 'allowed_roles': ['jcrc', 'captain', 'chairman'], 'allowed_ccas': ['Steppers', 'Dance', 'Badminton', 'Volleyball', 'Table Tennis', 'Floorball', 'Takraw'], 'created_at': '2025-02-22T16:05:46', 'updated_at': '2025-02-22T16:05:51'}, {'venue_id': 2, 'name': 'Band Room', 'allowed_roles': ['chairman'], 'allowed_ccas': ['Rockers', 'Inspire'], 'created_at': '2025-02-22T16:17:09', 'updated_at': '2025-02-22T16:17:14'}, {'venue_id': 3, 'name': 'Dining Hall', 'allowed_roles': ['jcrc', 'captain', 'chairman', 'resident'], 'allowed_ccas': None, 'created_at': '2025-02-22T16:21:41', 'updated_at': '2025-02-22T16:21:43'}, {'venue_id': 4, 'name': 'Reading Room ', 'allowed_roles': ['jcrc', 'captain', 'chairman', 'resident'], 'allowed_ccas': None, 'created_at': '2025-02-22T16:21:41', 'updated_at': '2025-02-22T16:21:41'}]
+2025-02-23 00:47:57,097 - __main__ - DEBUG - Checking venue access for user_id=529222562, venue_name=MPSH
+2025-02-23 00:47:57,097 - __main__ - DEBUG - Checking venue access for user_id=529222562, venue_name=Band Room
+2025-02-23 00:47:57,097 - __main__ - DEBUG - Checking venue access for user_id=529222562, venue_name=Dining Hall
+2025-02-23 00:47:57,097 - __main__ - DEBUG - Checking venue access for user_id=529222562, venue_name=Reading Room 
+2025-02-23 00:48:03,856 - __main__ - INFO - User 529222562 invoked /getid
+2025-02-23 00:48:08,118 - __main__ - INFO - User 529222562 invoked /view
+2025-02-23 00:48:08,118 - __main__ - DEBUG - Fetching user info from Supabase for user_id=529222562
+2025-02-23 00:48:09,304 - __main__ - DEBUG - Supabase response for user info: [{'user_id': 529222562, 'role': 'admin', 'cca': 'NULL', 'created_at': None, 'updated_at': None, 'name': 'Jared Ee'}]
+2025-02-23 00:48:09,304 - __main__ - DEBUG - Fetching bookings for user_id=529222562 (is_admin=True)
+2025-02-23 00:48:09,352 - __main__ - DEBUG - Bookings retrieved: [{'booking_id': 17, 'user_id': 567459345, 'venue_id': 4, 'booking_date': '2025-02-28T06:00:00', 'duration': '1:00', 'status': 'pending approval', 'created_at': None, 'updated_at': None, 'reason': 'lol'}, {'booking_id': 18, 'user_id': 213180204, 'venue_id': 3, 'booking_date': '2025-02-27T06:00:00', 'duration': '20000:00', 'status': 'pending approval', 'created_at': None, 'updated_at': None, 'reason': 'long reason'}, {'booking_id': 19, 'user_id': 529222562, 'venue_id': 1, 'booking_date': '2025-02-25T23:30:00', 'duration': '1:30', 'status': 'confirmed', 'created_at': None, 'updated_at': None, 'reason': 'ur mum gay'}, {'booking_id': 20, 'user_id': 567459345, 'venue_id': 4, 'booking_date': '2025-02-27T06:00:00', 'duration': '1:00', 'status': 'pending approval', 'created_at': None, 'updated_at': None, 'reason': 'Heh'}, {'booking_id': 16, 'user_id': 567459345, 'venue_id': 4, 'booking_date': '2025-02-27T18:00:00', 'duration': '1:15', 'status': 'confirmed', 'created_at': None, 'updated_at': None, 'reason': 'Locking in'}, {'booking_id': 21, 'user_id': 529222562, 'venue_id': 1, 'booking_date': '2025-02-25T06:00:00', 'duration': '0:45', 'status': 'confirmed', 'created_at': None, 'updated_at': None, 'reason': '.'}, {'booking_id': 22, 'user_id': 213180204, 'venue_id': 3, 'booking_date': '2025-02-26T10:00:00', 'duration': '00:15', 'status': 'pending approval', 'created_at': None, 'updated_at': None, 'reason': 'hi'}, {'booking_id': 24, 'user_id': 529222562, 'venue_id': 3, 'booking_date': '2025-02-24T00:00:00', 'duration': '00:15', 'status': 'pending approval', 'created_at': None, 'updated_at': None, 'reason': '*..*'}, {'booking_id': 25, 'user_id': 529222562, 'venue_id': 2, 'booking_date': '2025-02-27T05:00:00', 'duration': '5:00', 'status': 'confirmed', 'created_at': None, 'updated_at': None, 'reason': 'a'}]
+2025-02-23 00:48:09,352 - __main__ - DEBUG - Fetching all venues from Supabase.
+2025-02-23 00:48:09,400 - __main__ - DEBUG - Fetched venues: [{'venue_id': 1, 'name': 'MPSH', 'allowed_roles': ['jcrc', 'captain', 'chairman'], 'allowed_ccas': ['Steppers', 'Dance', 'Badminton', 'Volleyball', 'Table Tennis', 'Floorball', 'Takraw'], 'created_at': '2025-02-22T16:05:46', 'updated_at': '2025-02-22T16:05:51'}, {'venue_id': 2, 'name': 'Band Room', 'allowed_roles': ['chairman'], 'allowed_ccas': ['Rockers', 'Inspire'], 'created_at': '2025-02-22T16:17:09', 'updated_at': '2025-02-22T16:17:14'}, {'venue_id': 3, 'name': 'Dining Hall', 'allowed_roles': ['jcrc', 'captain', 'chairman', 'resident'], 'allowed_ccas': None, 'created_at': '2025-02-22T16:21:41', 'updated_at': '2025-02-22T16:21:43'}, {'venue_id': 4, 'name': 'Reading Room ', 'allowed_roles': ['jcrc', 'captain', 'chairman', 'resident'], 'allowed_ccas': None, 'created_at': '2025-02-22T16:21:41', 'updated_at': '2025-02-22T16:21:41'}]
+2025-02-23 00:48:09,400 - __main__ - DEBUG - Parsing duration from text: 1:00
+2025-02-23 00:48:09,400 - __main__ - DEBUG - Parsing duration from text: 20000:00
+2025-02-23 00:48:09,400 - __main__ - DEBUG - Parsing duration from text: 1:30
+2025-02-23 00:48:09,400 - __main__ - DEBUG - Parsing duration from text: 1:00
+2025-02-23 00:48:09,400 - __main__ - DEBUG - Parsing duration from text: 1:15
+2025-02-23 00:48:09,400 - __main__ - DEBUG - Parsing duration from text: 0:45
+2025-02-23 00:48:09,400 - __main__ - DEBUG - Parsing duration from text: 00:15
+2025-02-23 00:48:09,400 - __main__ - DEBUG - Parsing duration from text: 00:15
+2025-02-23 00:48:09,400 - __main__ - DEBUG - Parsing duration from text: 5:00
+2025-02-23 00:50:50,354 - __main__ - INFO - Bot is starting polling...
+2025-02-23 00:51:13,961 - __main__ - INFO - Bot is starting polling...
+2025-02-23 00:51:20,086 - __main__ - INFO - User 529222562 invoked /book
+2025-02-23 00:51:20,086 - __main__ - DEBUG - Fetching user info from Supabase for user_id=529222562
+2025-02-23 00:51:20,568 - __main__ - DEBUG - Supabase response for user info: [{'user_id': 529222562, 'role': 'admin', 'cca': 'NULL', 'created_at': None, 'updated_at': None, 'name': 'Jared Ee'}]
+2025-02-23 00:51:20,568 - __main__ - DEBUG - Fetching all venues from Supabase.
+2025-02-23 00:51:20,616 - __main__ - DEBUG - Fetched venues: [{'venue_id': 1, 'name': 'MPSH', 'allowed_roles': ['jcrc', 'captain', 'chairman'], 'allowed_ccas': ['Steppers', 'Dance', 'Badminton', 'Volleyball', 'Table Tennis', 'Floorball', 'Takraw'], 'created_at': '2025-02-22T16:05:46', 'updated_at': '2025-02-22T16:05:51'}, {'venue_id': 2, 'name': 'Band Room', 'allowed_roles': ['chairman'], 'allowed_ccas': ['Rockers', 'Inspire'], 'created_at': '2025-02-22T16:17:09', 'updated_at': '2025-02-22T16:17:14'}, {'venue_id': 3, 'name': 'Dining Hall', 'allowed_roles': ['jcrc', 'captain', 'chairman', 'resident'], 'allowed_ccas': None, 'created_at': '2025-02-22T16:21:41', 'updated_at': '2025-02-22T16:21:43'}, {'venue_id': 4, 'name': 'Reading Room ', 'allowed_roles': ['jcrc', 'captain', 'chairman', 'resident'], 'allowed_ccas': None, 'created_at': '2025-02-22T16:21:41', 'updated_at': '2025-02-22T16:21:41'}]
+2025-02-23 00:51:20,616 - __main__ - DEBUG - Checking venue access for user_id=529222562, venue_name=MPSH
+2025-02-23 00:51:20,616 - __main__ - DEBUG - Checking venue access for user_id=529222562, venue_name=Band Room
+2025-02-23 00:51:20,616 - __main__ - DEBUG - Checking venue access for user_id=529222562, venue_name=Dining Hall
+2025-02-23 00:51:20,616 - __main__ - DEBUG - Checking venue access for user_id=529222562, venue_name=Reading Room 
+2025-02-23 00:54:00,042 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 01:06:16,259 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 01:12:01,331 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 01:17:41,433 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 01:29:10,468 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 01:39:15,865 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 01:59:10,751 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 01:59:15,159 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 713, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 665, in view_command
+    users_dict = {str(u["name"]): u["name"] for u in users}
+                                                     ^^^^^
+NameError: name 'users' is not defined. Did you mean: 'user'?
+2025-02-23 02:00:45,560 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:02:08,927 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:05:41,487 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:17:18,444 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:18:09,205 - __main__ - CRITICAL - Bot is restarting upon admin request...
+2025-02-23 02:18:09,580 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:18:20,590 - __main__ - CRITICAL - Bot is restarting upon admin request...
+2025-02-23 02:18:20,829 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:18:23,714 - __main__ - CRITICAL - Bot is restarting upon admin request...
+2025-02-23 02:18:23,952 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:22:37,983 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:23:36,401 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 799, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 463, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 94, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:24:31,082 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:24:32,621 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 799, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 463, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 94, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:24:47,509 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:25:08,275 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 799, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 463, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 94, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:26:43,398 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:28:09,736 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 799, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 463, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 94, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:33:29,091 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:33:30,708 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 802, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 466, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 94, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:33:37,313 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:38:11,137 - __main__ - CRITICAL - Bot is restarting upon admin request...
+2025-02-23 02:38:11,493 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:38:31,286 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 802, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 466, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 94, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:39:22,852 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:39:24,447 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 802, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 466, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 94, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:39:34,265 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:39:44,102 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 802, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 466, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 94, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:39:56,484 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:40:35,836 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 802, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 466, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 94, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:50:18,689 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:50:28,206 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 804, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 468, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 96, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:51:57,629 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:52:05,460 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 805, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 469, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 97, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:54:02,425 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:54:09,956 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 807, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 471, in book_command
+    accessible_venues = [v for v in venues if user_can_access_venue(user, v)]
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 98, in user_can_access_venue
+    user_cca = user.get("cca", "").strip().lower()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2025-02-23 02:57:16,521 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 02:58:21,170 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 03:03:44,283 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 03:11:09,090 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 03:20:54,786 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 03:22:40,372 - __main__ - CRITICAL - Bot is restarting upon admin request...
+2025-02-23 03:22:40,723 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 03:25:26,421 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 03:29:26,424 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 04:12:17,753 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 04:18:58,351 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 04:20:45,625 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 978, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 308, in register_new_user
+    supabase.table("users").insert(new_user).execute()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/postgrest/_sync/request_builder.py", line 78, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '23505', 'details': 'Key (user_id)=(567459345) already exists.', 'hint': None, 'message': 'duplicate key value violates unique constraint "Users Table_pkey"'}
+2025-02-23 04:21:41,909 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 04:21:53,486 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 04:22:18,054 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 978, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 308, in register_new_user
+    supabase.table("users").insert(new_user).execute()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/postgrest/_sync/request_builder.py", line 78, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '23505', 'details': 'Key (user_id)=(529222562) already exists.', 'hint': None, 'message': 'duplicate key value violates unique constraint "Users Table_pkey"'}
+2025-02-23 04:27:26,787 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 04:27:39,691 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 984, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 314, in register_new_user
+    supabase.table("users").insert(new_user).execute()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/postgrest/_sync/request_builder.py", line 78, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '23505', 'details': 'Key (user_id)=(213180204) already exists.', 'hint': None, 'message': 'duplicate key value violates unique constraint "Users Table_pkey"'}
+2025-02-23 04:28:44,611 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 04:28:55,364 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 04:46:30,867 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 04:51:04,190 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 04:51:49,240 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 1077, in <module>
+    bot.polling(none_stop=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 894, in handle_reason
+    create_booking(
+  File "/Users/jared/Documents/Facility-Booking-Bot/main.py", line 151, in create_booking
+    supabase.table("bookings").insert(data).execute()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/postgrest/_sync/request_builder.py", line 78, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '23505', 'details': 'Key (booking_id)=(63) already exists.', 'hint': None, 'message': 'duplicate key value violates unique constraint "Bookings Table_pkey"'}
+2025-02-23 04:52:13,428 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 14:06:15,836 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 14:48:12,473 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connection.py", line 516, in getresponse
+    httplib_response = super().getresponse()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1430, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 367, in _raise_timeout
+    raise ReadTimeoutError(
+        self, url, f"Read timed out. (read timeout={timeout_value})"
+    ) from err
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=25)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/main.py", line 1077, in <module>
+    bot.polling(none_stop=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            logger_level=logger_level, allowed_updates=allowed_updates)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+                               allowed_updates=allowed_updates,
+                               timeout=timeout, long_polling_timeout=long_polling_timeout)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+        self.token, offset=offset, limit=limit, timeout=timeout, allowed_updates=allowed_updates,
+        long_polling_timeout=long_polling_timeout)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/apihelper.py", line 162, in _make_request
+    result = _get_req_session().request(
+        method, request_url, params=params, files=files,
+        timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/requests/adapters.py", line 713, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=25)
+2025-02-23 16:29:12,614 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 17:21:05,693 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 17:21:56,810 - __main__ - CRITICAL - Bot is starting polling...
+2025-02-23 17:28:31,450 - __main__ - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connection.py", line 516, in getresponse
+    httplib_response = super().getresponse()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1430, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 367, in _raise_timeout
+    raise ReadTimeoutError(
+        self, url, f"Read timed out. (read timeout={timeout_value})"
+    ) from err
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=25)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/main.py", line 1077, in <module>
+    logger.critical("Bot is starting polling...")  # Startup message
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            logger_level=logger_level, allowed_updates=allowed_updates)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+                               allowed_updates=allowed_updates,
+                               timeout=timeout, long_polling_timeout=long_polling_timeout)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+        self.token, offset=offset, limit=limit, timeout=timeout, allowed_updates=allowed_updates,
+        long_polling_timeout=long_polling_timeout)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/telebot/apihelper.py", line 162, in _make_request
+    result = _get_req_session().request(
+        method, request_url, params=params, files=files,
+        timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/winston/Desktop/VSCode/Projects/Facility-Booking-Bot/venv/lib/python3.13/site-packages/requests/adapters.py", line 713, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=25)
