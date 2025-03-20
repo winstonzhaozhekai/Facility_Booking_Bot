@@ -46,11 +46,11 @@ SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 ROLES = {
-    "admin": "Administrator",
-    "jcrc": "JCRC",
-    "captain": "Captain",
-    "chairman": "Chairman",
-    "resident": "Resident"
+    "Admin": "Admin",
+    "JCRC": "JCRC",
+    "Captain": "Captain",
+    "Chairman": "Chairman",
+    "Resident": "Resident"
 }
 
 CCAS = [
@@ -67,6 +67,60 @@ GROUP_CHAT_IDS = []  # Add your group chat IDs here
 @bot.message_handler(func=lambda m: m.chat.type in ["supergroup", "group"])
 def ignore_group_messages(message):
     pass
+
+# ------------------- Google Calendar Setup -------------------
+import google.oauth2.service_account
+from googleapiclient.discovery import build
+
+# Define the scope and path to your JSON credentials file.
+SCOPES = ['https://www.googleapis.com/auth/calendar']
+SERVICE_ACCOUNT_FILE = r'Facility_Booking_Bot\facility-booking-bot-3b36d365b812.json'
+calendar_id = 'fde2719902f4ca8ada620b4922fa8365a333b2cf79885e048e107dd6d7834b9a@group.calendar.google.com'
+
+# Create credentials and build the Google Calendar service.
+credentials = google.oauth2.service_account.Credentials.from_service_account_file(
+    SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+calendar_service = build('calendar', 'v3', credentials=credentials)
+
+# ------------------- Calendar Helper Functions -------------------
+def add_event_to_calendar(booking, venue):
+    # Convert booking_date from ISO format to datetime.
+    start_dt = dt.fromisoformat(booking["booking_date"])
+    duration_td = parse_duration(booking["duration"])
+    end_dt = start_dt + duration_td
+
+    # Retrieve user info based on booking["user_id"]
+    user = get_user_info(booking["user_id"])
+    user_name = user.get("name", "Unknown User") if user else "Unknown User"
+    user_role = user.get("role", "No role") if user else "No role"
+    user_cca = user.get("cca", "No CCA") if user else "No CCA"
+
+    # Set the event summary as the short reason, and description as who booked it plus their role.
+    event = {
+        'summary': booking.get("reason", "No Reason Provided"),
+        'description': f"Booked by: {user_name}, ({user_role} of {user_cca})",
+        'start': {
+            'dateTime': start_dt.isoformat(),
+            'timeZone': 'Asia/Singapore',  # Adjust if needed.
+        },
+        'end': {
+            'dateTime': end_dt.isoformat(),
+            'timeZone': 'Asia/Singapore',
+        },
+    }
+    created_event = calendar_service.events().insert(calendarId=calendar_id, body=event).execute()
+    print('Event created on Calendar: {}'.format(created_event.get('htmlLink')))
+    return created_event.get("id")
+
+def remove_event_from_calendar(event_id):
+    """
+    Remove the event from Google Calendar given its event ID.
+    """
+    try:
+        calendar_service.events().delete(calendarId=calendar_id, eventId=event_id).execute()
+        print(f"Event {event_id} removed from Google Calendar.")
+    except Exception as e:
+        print(f"Failed to remove event from calendar: {e}")
 
 # ------------------------------------------------------------------------------
 # HELPER FUNCTIONS
@@ -151,6 +205,21 @@ def create_booking(user_id, venue, booking_start, duration_text, user_role, reas
         "reason": reason
     }
     supabase.table("bookings").insert(data).execute()
+
+    # Fetch the newly inserted booking (using a combination of unique fields)
+    result = supabase.table("bookings").select("*") \
+        .eq("user_id", user_id) \
+        .eq("venue_id", venue["venue_id"]) \
+        .eq("booking_date", booking_start_str) \
+        .eq("duration", duration_text) \
+        .eq("reason", reason) \
+        .execute()
+    new_booking_data = result.data[0] if result.data else None
+
+    # If the booking is auto-confirmed, add it to Google Calendar.
+    if new_booking_data and status == "confirmed":
+        event_id = add_event_to_calendar(new_booking_data, venue)
+        supabase.table("bookings").update({"calendar_event_id": event_id}).eq("booking_id", new_booking_data["booking_id"]).execute()
 
     # If it's Reading Room or Dining Hall AND status is "pending approval",
     # let's fetch the inserted booking from DB and notify JCRC
@@ -246,7 +315,10 @@ def cancel_booking(booking_id, user_id, is_admin=False):
     result = query.execute()
     if not result.data:
         return False
+    booking = result.data[0]
     supabase.table("bookings").update({"status": "cancelled"}).eq("booking_id", booking_id).execute()
+    if booking.get("calendar_event_id"):
+        remove_event_from_calendar(booking["calendar_event_id"])
     return True
 
 def get_user_bookings(user_id, is_admin=False):
@@ -363,6 +435,7 @@ def notify_jcrc_of_new_request(booking):
         except Exception as e:
             # In case the user blocked the bot or another send error
             print(f"Failed to notify JCRC user {jcrc_user_id}: {e}")
+
 # ------------------------------------------------------------------------------
 # BOT COMMAND HANDLERS
 # ------------------------------------------------------------------------------
@@ -393,7 +466,7 @@ def start(message):
         bot.send_message(
             message.from_user.id,
             f"Welcome back {user.get('name', '')}! "
-            f"You are registered as: {ROLES.get(user['role'], 'Resident')}"
+            f"You are registered as: {user['role']}"
         )
         send_main_menu(message.from_user.id)
 
@@ -403,7 +476,7 @@ def register_new_user(message):
     new_user = {
         "user_id": user_id,
         "name": name,
-        "role": "resident",
+        "role": "Resident",
         "cca": "No CCA"
     }
     supabase.table("users").insert(new_user).execute()
@@ -510,16 +583,20 @@ def process_approval(message):
         # 1) Update status to confirmed
         supabase.table("bookings").update({"status": "confirmed"}).eq("booking_id", booking_id).execute()
 
-        # 2) Send a message to the JCRC user that we approved
-        bot.send_message(message.from_user.id, f"Booking {booking_id} approved. Press /start to restart the process.")
-
-        # 3) Re-fetch the updated booking so we can pass the latest record to notify_approval
+        # Re-fetch the updated booking so we can update Google Calendar.
         updated_res = supabase.table("bookings").select("*").eq("booking_id", booking_id).execute()
         updated_booking = updated_res.data[0] if updated_res.data else None
 
-        # 4) If we have an updated booking, call notify_approval
         if updated_booking:
+            # If the booking does not already have a calendar event, add it.
+            if not updated_booking.get("calendar_event_id"):
+                venue_data = supabase.table("venues").select("*").eq("venue_id", updated_booking["venue_id"]).execute()
+                venue = venue_data.data[0] if venue_data.data else {}
+                event_id = add_event_to_calendar(updated_booking, venue)
+                supabase.table("bookings").update({"calendar_event_id": event_id}).eq("booking_id", booking_id).execute()
             notify_approval(updated_booking)
+
+        bot.send_message(message.from_user.id, f"Booking {booking_id} approved. Press /start to restart the process.")
 
     except ValueError:
         bot.send_message(message.from_user.id, "Invalid Booking ID. Press /start to restart the process.")
@@ -567,7 +644,7 @@ def admin_update_user_id(message):
     
     markup = types.InlineKeyboardMarkup()
     for role in ROLES.keys():
-        btn = types.InlineKeyboardButton(ROLES[role], callback_data=f"setrole_{target_user_id}_{role}")
+        btn = types.InlineKeyboardButton(ROLES[role], callback_data=f"setrole_{target_user_id}_{ROLES[role]}")
         markup.add(btn)
     
     bot.send_message(
@@ -611,6 +688,13 @@ def callback_set_cca(call):
         call.message.chat.id,
         call.message.message_id
     )
+    try:
+        bot.send_message(
+            target_user_id,
+            f"Hello, you has been updated as: {ROLES[new_role]} of: {new_cca if new_cca else 'None'}."
+        )
+    except Exception as e:
+        print(f"Error sending update notification to user {target_user_id}: {e}")
     admin_update_flow.pop(admin_id, None)
 
 @bot.message_handler(commands=['book'])
