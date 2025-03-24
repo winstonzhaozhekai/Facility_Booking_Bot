@@ -50,12 +50,15 @@ ROLES = {
     "JCRC": "JCRC",
     "Captain": "Captain",
     "Chairman": "Chairman",
+    "Block Head": "Block Head",
     "Resident": "Resident"
 }
 
 CCAS = [
     "No CCA", "Steppers", "Dance", "Badminton", "Volleyball",
-    "Table Tennis", "Floorball", "Takraw", "Rockers", "Inspire"
+    "Table Tennis", "Floorball", "Takraw", "Rockers", "Inspire",
+    "A Blk", "B Blk", "C Blk", "D Blk", "E Blk",
+    "Welfare D", "Sports D", "Culture D"
 ]
 
 user_booking_flow = {}
@@ -691,7 +694,7 @@ def callback_set_cca(call):
     try:
         bot.send_message(
             target_user_id,
-            f"Hello, you has been updated as: {ROLES[new_role]} of: {new_cca if new_cca else 'None'}."
+            f"You has been updated as: {ROLES[new_role]} of {new_cca if new_cca else 'None'}."
         )
     except Exception as e:
         print(f"Error sending update notification to user {target_user_id}: {e}")
