@@ -6,6 +6,8 @@ import telebot
 from telebot import types
 from supabase import create_client, Client
 from datetime import datetime as dt, timedelta
+import google.oauth2.service_account
+from googleapiclient.discovery import build
 import pytz
 import json
 load_dotenv()
@@ -54,12 +56,27 @@ ROLES = {
     "Resident": "Resident"
 }
 
+BLOCKS = ["A Blk", "B Blk", "C Blk", "D Blk", "E Blk"]
+
 CCAS = [
     "No CCA", "Steppers", "Dance", "Badminton", "Volleyball",
     "Table Tennis", "Floorball", "Takraw", "Rockers", "Inspire",
     "A Blk", "B Blk", "C Blk", "D Blk", "E Blk",
     "Welfare D", "Sports D", "Culture D"
 ]
+
+VENUE_COLORS = {
+    "Reading Room": "2",   # e.g., light green
+    "Dining Hall": "3",    # e.g., light blue
+    "MPSH": "4",           # e.g., lavender
+    "Band Room": "5",      # e.g., peach
+    "A Blk Lounge": "6",
+    "B Blk Lounge": "7",
+    "C Blk Lounge": "8",
+    "D Blk Lounge": "9",
+    "E Blk Lounge": "10"
+    # Add more mappings as needed.
+}
 
 user_booking_flow = {}
 admin_update_flow = {}
@@ -72,12 +89,9 @@ def ignore_group_messages(message):
     pass
 
 # ------------------- Google Calendar Setup -------------------
-import google.oauth2.service_account
-from googleapiclient.discovery import build
-
 # Define the scope and path to your JSON credentials file.
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-SERVICE_ACCOUNT_FILE = r'Facility_Booking_Bot\facility-booking-bot-3b36d365b812.json'
+SERVICE_ACCOUNT_FILE = r'facility-booking-bot-05fa8655aa47.json'
 calendar_id = 'fde2719902f4ca8ada620b4922fa8365a333b2cf79885e048e107dd6d7834b9a@group.calendar.google.com'
 
 # Create credentials and build the Google Calendar service.
@@ -97,11 +111,23 @@ def add_event_to_calendar(booking, venue):
     user_name = user.get("name", "Unknown User") if user else "Unknown User"
     user_role = user.get("role", "No role") if user else "No role"
     user_cca = user.get("cca", "No CCA") if user else "No CCA"
+    user_block = user.get("block", "No Block") if user else "No Block"
+
+    summary = f"{venue['name']}: {booking.get('reason', 'No Reason Provided')}"
+
+    description = f"Booked by: {user_name}"
+    if user_role != "Resident":
+        description += f", ({user_role}, {user_cca})"
+    description += f" from {user_block}"
+
+    # Look up the colorId using the venue's exact name
+    color_id = VENUE_COLORS.get(venue["name"], "1")  # Default to "1" if not found
 
     # Set the event summary as the short reason, and description as who booked it plus their role.
     event = {
-        'summary': booking.get("reason", "No Reason Provided"),
-        'description': f"Booked by: {user_name}, ({user_role} of {user_cca})",
+        'summary': summary,
+        'description': description,
+        'location': venue['name'],
         'start': {
             'dateTime': start_dt.isoformat(),
             'timeZone': 'Asia/Singapore',  # Adjust if needed.
@@ -110,6 +136,7 @@ def add_event_to_calendar(booking, venue):
             'dateTime': end_dt.isoformat(),
             'timeZone': 'Asia/Singapore',
         },
+        'colorId': color_id  # Apply the color to the event
     }
     created_event = calendar_service.events().insert(calendarId=calendar_id, body=event).execute()
     print('Event created on Calendar: {}'.format(created_event.get('htmlLink')))
@@ -162,31 +189,43 @@ def user_can_access_venue(user, venue):
 
     user_role = user["role"].strip().lower()
     user_cca = user.get("cca", "").strip().lower()
-    venue_name = venue["name"].strip().lower()
-    
-    # Special case for Band Room
-    if venue_name == "band room":
-        if user_role == "chairman" and user_cca in ["rockers", "inspire"]:
-            return True
-        return False
-
-    # Residents can always book these
-    if user_role == "resident" and venue_name in ["reading room", "dining hall"]:
-        return True
+    user_block = user.get("block", "").strip().lower()
 
     allowed_roles = venue.get("allowed_roles") or []
     allowed_ccas = venue.get("allowed_ccas") or []
+    allowed_blocks = venue.get("allowed_blocks") or []
+
+    # If restrictions are stored as JSON strings, decode them.
     if isinstance(allowed_roles, str):
         allowed_roles = json.loads(allowed_roles)
     if isinstance(allowed_ccas, str):
         allowed_ccas = json.loads(allowed_ccas)
+    if isinstance(allowed_blocks, str):
+        allowed_blocks = json.loads(allowed_blocks)
         
-    if user_role in [r.lower() for r in allowed_roles]:
+    # Normalize allowed values to lowercase
+    allowed_roles = [r.lower() for r in allowed_roles]
+    allowed_ccas = [cca.lower() for cca in allowed_ccas]
+    allowed_blocks = [b.lower() for b in allowed_blocks]
+
+    # If allowed blocks is provided and user matches, that's enough.
+    if allowed_blocks and user_block in allowed_blocks:
         return True
-    if allowed_ccas and len(allowed_ccas) > 0:
-        if user_cca and user_cca in [cca.lower() for cca in allowed_ccas]:
+
+    # If both allowed_roles and allowed_ccas are provided (non-empty),
+    # then both must match.
+    if allowed_roles and allowed_ccas:
+        if user_role in allowed_roles and user_cca in allowed_ccas:
             return True
-        return False
+        else:
+            return False
+
+    # Otherwise, if only allowed_roles is provided, use that restriction.
+    if allowed_roles and not allowed_ccas:
+        if user_role in allowed_roles:
+            return True
+
+    # If none of the above conditions were met, deny access.
     return False
 
 def create_booking(user_id, venue, booking_start, duration_text, user_role, reason):
@@ -462,29 +501,69 @@ def start(message):
     if user is None:
         bot.send_message(
             message.from_user.id,
-            "Welcome! It looks like you're new here. Please tell us your name:"
+            "Welcome! It looks like you're new here. Please tell us your name! (Please use your real name if not your bookings will not be approved)"
         )
         bot.register_next_step_handler(message, register_new_user)
     else:
-        bot.send_message(
-            message.from_user.id,
-            f"Welcome back {user.get('name', '')}! "
-            f"You are registered as: {user['role']}"
-        )
+        if user['role'] == "Resident":
+            bot.send_message(
+                message.from_user.id,
+                f"Welcome back {user.get('name', '')}! "
+                f"You are registered as: {user['role']} from {user.get('block', 'Unknown Block')}"
+            )
+        else: 
+            bot.send_message(
+                message.from_user.id,
+                f"Welcome back {user.get('name', '')}! "
+                f"You are registered as: {user['role']} of {user['cca']} from {user.get('block', 'Unknown Block')}"
+            )
         send_main_menu(message.from_user.id)
 
 def register_new_user(message):
     user_id = message.from_user.id
     name = message.text.strip()
+    
+    # Save name temporarily
+    user_booking_flow[user_id] = {"name": name}
+    
+    # Send block selection
+    markup = types.InlineKeyboardMarkup()
+    for blk in BLOCKS:
+        btn = types.InlineKeyboardButton(blk, callback_data=f"setblock_{blk.replace(' ', '')}")
+        markup.add(btn)
+    
+    bot.send_message(user_id, f"Hi {name}! Please select your block, take note choices are permanent", reply_markup=markup)
+
+@bot.callback_query_handler(func=lambda call: call.data.startswith("setblock_"))
+def callback_set_block(call):
+    user_id = call.from_user.id
+    block = call.data.split("_")[1]
+    block_name = " ".join([block[0], "Blk"]) if len(block) == 4 else block.replace('Blk', ' Blk')
+    
+    name = user_booking_flow.get(user_id, {}).get("name", None)
+    if not name:
+        bot.send_message(user_id, "Session expired. Please /start again.")
+        return
+    
+    # Insert into Supabase
     new_user = {
         "user_id": user_id,
         "name": name,
         "role": "Resident",
-        "cca": "No CCA"
+        "cca": "No CCA",
+        "block": block_name
     }
     supabase.table("users").insert(new_user).execute()
-    bot.send_message(user_id, f"Thanks {name}! You are now registered as a Resident.")
+    
+    bot.edit_message_text(
+        f"Thanks {name}! You are now registered as a Resident in {block_name}.",
+        call.message.chat.id,
+        call.message.message_id
+    )
     send_main_menu(user_id)
+    
+    # Cleanup
+    user_booking_flow.pop(user_id, None)
 
 def send_main_menu(chat_id):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
@@ -746,7 +825,7 @@ def book_command(message):
 def handle_venue_selection(message):
     user_id = message.from_user.id
     if user_id not in user_booking_flow:
-        bot.send_message(user_id, "Booking flow expired. Please try /book again.")
+        bot.send_message(user_id, "Booking flow expired. Please try /start again.")
         return
     flow_data = user_booking_flow[user_id]
     venue_name = message.text.strip().lower()
@@ -755,7 +834,7 @@ def handle_venue_selection(message):
         None
     )
     if not chosen_venue:
-        bot.send_message(user_id, "Invalid venue selection. Please try /book again.")
+        bot.send_message(user_id, "Invalid venue selection. Please try /start again.")
         user_booking_flow.pop(user_id, None)
         return
     flow_data["venue"] = chosen_venue
@@ -820,7 +899,7 @@ def callback_booking_date(call):
 def handle_start_time(message):
     user_id = message.from_user.id
     if user_id not in user_booking_flow:
-        bot.send_message(user_id, "Booking flow expired. Please try /book again.")
+        bot.send_message(user_id, "Booking flow expired. Please try /start again.")
         return
     flow_data = user_booking_flow[user_id]
     time_str = message.text.strip()
@@ -893,7 +972,7 @@ def handle_start_time_confirm(call):
 def handle_duration(message):
     user_id = message.from_user.id
     if user_id not in user_booking_flow:
-        bot.send_message(user_id, "Booking flow expired. Please try /book again.")
+        bot.send_message(user_id, "Booking flow expired. Please try /start again.")
         return
     flow_data = user_booking_flow[user_id]
     duration_str = message.text.strip()
@@ -964,7 +1043,7 @@ def handle_duration_confirm(call):
         bot.register_next_step_handler(msg, handle_duration)
     else:  # exit_duration
         bot.edit_message_text(
-            "Booking process cancelled. Please try /book again.",
+            "Booking process cancelled. Please try /start again.",
             call.message.chat.id,
             call.message.message_id
         )
@@ -973,7 +1052,7 @@ def handle_duration_confirm(call):
 def handle_reason(message):
     user_id = message.from_user.id
     if user_id not in user_booking_flow:
-        bot.send_message(user_id, "Booking flow expired. Please try /book again.")
+        bot.send_message(user_id, "Booking flow expired. Please try /start again.")
         return
     flow_data = user_booking_flow[user_id]
     reason = message.text.strip()
