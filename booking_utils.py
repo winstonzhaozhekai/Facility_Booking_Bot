@@ -1,7 +1,7 @@
 from datetime import timedelta, datetime as dt
 from config import supabase
 from calendar_helpers import add_event_to_calendar, remove_event_from_calendar
-from db_helpers import parse_duration, get_user_info
+from db_helpers import parse_duration
 
 def create_booking(user_id, venue, booking_start, duration_text, user_role, reason):
     venue_name = venue["name"].strip().lower()
