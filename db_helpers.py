@@ -1,4 +1,4 @@
-from datetime import timedelta, datetime as dt
+from datetime import timedelta
 import json
 from config import supabase
 

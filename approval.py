@@ -1,5 +1,4 @@
 from datetime import datetime as dt
-from telebot import types
 from config import bot, supabase
 from db_helpers import get_user_info, get_all_venues, get_all_users, parse_duration
 from notifications import notify_approval

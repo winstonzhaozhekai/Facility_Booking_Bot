@@ -2,7 +2,7 @@ import google.oauth2.service_account
 from googleapiclient.discovery import build
 from datetime import datetime as dt
 from config import VENUE_COLORS
-from db_helpers import parse_duration, get_user_info
+from db_helpers import get_user_info
 
 # Google Calendar setup
 SCOPES = ['https://www.googleapis.com/auth/calendar']
