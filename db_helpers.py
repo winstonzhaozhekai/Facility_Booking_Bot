@@ -47,24 +47,10 @@ def user_can_access_venue(user, venue):
     if user is None:
         return False
     user_role = user["role"].strip().lower()
-    user_cca = user.get("cca", "").strip().lower()
-    user_block = user.get("block", "").strip().lower()
     allowed_roles = venue.get("allowed_roles") or []
-    allowed_ccas = venue.get("allowed_ccas") or []
-    allowed_blocks = venue.get("allowed_blocks") or []
     if isinstance(allowed_roles, str):
         allowed_roles = json.loads(allowed_roles)
-    if isinstance(allowed_ccas, str):
-        allowed_ccas = json.loads(allowed_ccas)
-    if isinstance(allowed_blocks, str):
-        allowed_blocks = json.loads(allowed_blocks)
     allowed_roles = [r.lower() for r in allowed_roles]
-    allowed_ccas = [cca.lower() for cca in allowed_ccas]
-    allowed_blocks = [b.lower() for b in allowed_blocks]
-    if allowed_blocks and user_block in allowed_blocks:
-        return True
-    if allowed_roles and allowed_ccas:
-        return user_role in allowed_roles and user_cca in allowed_ccas
-    if allowed_roles and not allowed_ccas:
+    if allowed_roles:
         return user_role in allowed_roles
     return False

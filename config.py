@@ -36,28 +36,11 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 ROLES = {
     "Admin": "Admin",
     "JCRC": "JCRC",
-    "Captain": "Captain",
-    "Chairman": "Chairman",
-    "Block Head": "Block Head",
     "Resident": "Resident"
 }
-BLOCKS = ["A Blk", "B Blk", "C Blk", "D Blk", "E Blk"]
-CCAS = [
-    "No CCA", "Steppers", "Dance", "Badminton", "Volleyball",
-    "Table Tennis", "Floorball", "Takraw", "Rockers", "Inspire",
-    "A Blk", "B Blk", "C Blk", "D Blk", "E Blk",
-    "Welfare D", "Sports D", "Culture D"
-]
 VENUE_COLORS = {
     "Reading Room": "2",
     "Dining Hall": "3",
-    "MPSH": "4",
-    "Band Room": "5",
-    "A Blk Lounge": "6",
-    "B Blk Lounge": "7",
-    "C Blk Lounge": "8",
-    "D Blk Lounge": "9",
-    "E Blk Lounge": "10"
 }
 
 # Global dictionaries to keep track of ongoing flows
