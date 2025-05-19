@@ -1,4 +1,4 @@
-from config import bot, supabase, user_booking_flow, BLOCKS
+from config import bot, supabase, user_booking_flow
 from telebot import types
 from db_helpers import get_user_info
 
@@ -23,6 +23,22 @@ def register_new_user(message):
     name = message.text.strip()
     user_booking_flow[user_id] = {"name": name}
     markup = types.InlineKeyboardMarkup()
+    if not name:
+        bot.send_message(user_id, "Session expired. Please /start again.")
+        return
+    new_user = {
+        "user_id": user_id,
+        "name": name,
+        "role": "Resident",
+        "cca": "No CCA",
+        "block": None,
+    }
+    supabase.table("users").insert(new_user).execute()
+    bot.send_message(
+        user_id, f"Thanks {name}! You are now registered as a Resident."
+    )
+    send_main_menu(user_id)
+    user_booking_flow.pop(user_id, None)
 
 def send_main_menu(chat_id):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)

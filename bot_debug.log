@@ -822,3 +822,383 @@ requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.telegram.org', po
 2025-05-05 15:41:33,590 - config - CRITICAL - Bot is starting polling...
 2025-05-05 15:41:58,158 - config - CRITICAL - Bot is starting polling...
 2025-05-05 15:42:42,736 - config - CRITICAL - Bot is starting polling...
+2025-05-17 16:18:59,150 - config - CRITICAL - Bot is starting polling...
+2025-05-17 16:19:03,801 - config - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_backends/sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/main.py", line 14, in <module>
+    bot.polling(none_stop=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            logger_level=logger_level, allowed_updates=allowed_updates)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/registration.py", line 7, in start
+    user = get_user_info(message.from_user.id)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/db_helpers.py", line 20, in get_user_info
+    response = supabase.table("users").select("*").eq("user_id", user_id).execute()
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/postgrest/_sync/request_builder.py", line 58, in execute
+    r = self.session.request(
+        self.http_method,
+    ...<3 lines>...
+        headers=self.headers,
+    )
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 8] nodename nor servname provided, or not known
+2025-05-17 16:21:19,480 - config - CRITICAL - Bot is starting polling...
+2025-05-17 16:21:24,648 - config - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_backends/sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/main.py", line 14, in <module>
+    bot.polling(none_stop=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            logger_level=logger_level, allowed_updates=allowed_updates)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/registration.py", line 7, in start
+    user = get_user_info(message.from_user.id)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/db_helpers.py", line 20, in get_user_info
+    response = supabase.table("users").select("*").eq("user_id", user_id).execute()
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/postgrest/_sync/request_builder.py", line 58, in execute
+    r = self.session.request(
+        self.http_method,
+    ...<3 lines>...
+        headers=self.headers,
+    )
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 8] nodename nor servname provided, or not known
+2025-05-17 19:01:15,050 - config - CRITICAL - Bot is starting polling...
+2025-05-17 19:05:02,198 - config - CRITICAL - Bot is starting polling...
+2025-05-17 19:27:58,438 - config - CRITICAL - Bot is starting polling...
+2025-05-17 19:42:35,406 - config - CRITICAL - Bot is starting polling...
+2025-05-17 19:42:45,658 - config - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/main.py", line 14, in <module>
+    bot.polling(none_stop=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            logger_level=logger_level, allowed_updates=allowed_updates)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/registration.py", line 39, in register_new_user
+    call.message.chat.id,
+    ^^^^
+NameError: name 'call' is not defined. Did you mean: 'all'?
+2025-05-17 19:44:47,819 - config - CRITICAL - Bot is starting polling...
+2025-05-17 19:47:21,724 - config - CRITICAL - Bot is starting polling...
+2025-05-17 19:50:22,735 - config - CRITICAL - Bot is starting polling...
+2025-05-17 19:53:18,763 - config - CRITICAL - Bot is starting polling...
+2025-05-17 19:53:29,262 - config - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/main.py", line 14, in <module>
+    bot.polling(none_stop=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            logger_level=logger_level, allowed_updates=allowed_updates)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/registration.py", line 37, in register_new_user
+    bot.send_message(
+    ~~~~~~~~~~~~~~~~^
+        f"Thanks {name}! You are now registered as a Resident."
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+TypeError: TeleBot.send_message() missing 1 required positional argument: 'text'
+2025-05-17 19:54:25,818 - config - CRITICAL - Bot is starting polling...
+2025-05-17 19:55:48,536 - config - CRITICAL - Bot is starting polling...
+2025-05-17 19:57:03,583 - config - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/main.py", line 14, in <module>
+    bot.polling(none_stop=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            logger_level=logger_level, allowed_updates=allowed_updates)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/booking_flow.py", line 220, in handle_reason
+    create_booking(
+    ~~~~~~~~~~~~~~^
+        user_id=user_id,
+        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        reason=reason
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/booking_utils.py", line 24, in create_booking
+    supabase.table("bookings").insert(data).execute()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/postgrest/_sync/request_builder.py", line 78, in execute
+    raise APIError(r.json())
+postgrest.exceptions.APIError: {'code': '23503', 'details': 'Key (user_id)=(1567823664) is not present in table "users".', 'hint': None, 'message': 'insert or update on table "bookings" violates foreign key constraint "Bookings Table_user_id_fkey"'}
+2025-05-17 19:57:33,013 - config - CRITICAL - Bot is starting polling...
+2025-05-17 20:25:30,941 - config - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 516, in getresponse
+    httplib_response = super().getresponse()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1430, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 367, in _raise_timeout
+    raise ReadTimeoutError(
+        self, url, f"Read timed out. (read timeout={timeout_value})"
+    ) from err
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=25)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/main.py", line 14, in <module>
+    bot.polling(none_stop=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            logger_level=logger_level, allowed_updates=allowed_updates)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 1234, in __threaded_polling
+    polling_thread.raise_exceptions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 111, in raise_exceptions
+    raise self.exception_info
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 688, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+                               allowed_updates=allowed_updates,
+                               timeout=timeout, long_polling_timeout=long_polling_timeout)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/__init__.py", line 660, in get_updates
+    json_updates = apihelper.get_updates(
+        self.token, offset=offset, limit=limit, timeout=timeout, allowed_updates=allowed_updates,
+        long_polling_timeout=long_polling_timeout)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/apihelper.py", line 332, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/telebot/apihelper.py", line 162, in _make_request
+    result = _get_req_session().request(
+        method, request_url, params=params, files=files,
+        timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/requests/adapters.py", line 713, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=25)

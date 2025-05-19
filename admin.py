@@ -1,4 +1,4 @@
-from config import bot, supabase, admin_update_flow, ROLES, CCAS
+from config import bot, supabase, admin_update_flow, ROLES
 from telebot import types
 from db_helpers import get_user_info
 
@@ -41,10 +41,6 @@ def callback_set_role(call):
     if admin_id in admin_update_flow:
         admin_update_flow[admin_id]["new_role"] = selected_role
     markup = types.InlineKeyboardMarkup()
-    for cca in CCAS:
-        btn = types.InlineKeyboardButton(cca, callback_data=f"setcca_{target_user_id}_{cca}")
-        markup.add(btn)
-    bot.edit_message_text("Select the new CCA (or 'No CCA'):", call.message.chat.id, call.message.message_id, reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith("setcca_"))
 def callback_set_cca(call):
