@@ -1202,3 +1202,98 @@ Traceback (most recent call last):
   File "/Users/jared/Documents/KR_Facility_Booking_Bot/Facility_Booking_Bot/.venv/lib/python3.13/site-packages/requests/adapters.py", line 713, in send
     raise ReadTimeout(e, request=request)
 requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=25)
+2025-05-19 10:20:26,633 - config - CRITICAL - Bot is starting polling...
+2025-05-19 10:24:44,716 - config - ERROR - Unhandled exception in bot polling:
+Traceback (most recent call last):
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpcore/_sync/connection.py", line 156, in _connect
+    stream = stream.start_tls(**kwargs)
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpcore/_backends/sync.py", line 154, in start_tls
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 54] Connection reset by peer
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jared/Documents/Facility_Booking_Bot/main.py", line 14, in <module>
+    bot.polling(none_stop=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/telebot/__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            logger_level=logger_level, allowed_updates=allowed_updates)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/telebot/__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/telebot/__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/telebot/util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/telebot/util.py", line 93, in run
+    task(*args, **kwargs)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/telebot/__init__.py", line 9759, in _run_middlewares_and_handler
+    result = handler['function'](message)
+  File "/Users/jared/Documents/Facility_Booking_Bot/view_cancel.py", line 61, in view_command
+    user = get_user_info(message.from_user.id)
+  File "/Users/jared/Documents/Facility_Booking_Bot/db_helpers.py", line 20, in get_user_info
+    response = supabase.table("users").select("*").eq("user_id", user_id).execute()
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/postgrest/_sync/request_builder.py", line 58, in execute
+    r = self.session.request(
+        self.http_method,
+    ...<3 lines>...
+        headers=self.headers,
+    )
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/jared/Library/Python/3.13/lib/python/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 54] Connection reset by peer
+2025-05-19 10:39:52,796 - config - CRITICAL - Bot is starting polling...
+2025-05-19 11:30:55,199 - config - CRITICAL - Bot is starting polling...
+2025-05-19 11:34:27,022 - config - CRITICAL - Bot is starting polling...
+2025-05-19 11:38:06,698 - config - CRITICAL - Bot is starting polling...
+2025-05-19 11:45:35,431 - config - CRITICAL - Bot is starting polling...

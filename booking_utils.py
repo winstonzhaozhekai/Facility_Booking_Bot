@@ -2,6 +2,7 @@ from datetime import timedelta, datetime as dt
 from config import supabase
 from calendar_helpers import add_event_to_calendar, remove_event_from_calendar
 from db_helpers import parse_duration
+from notifications import notify_jcrc_of_new_request
 
 def create_booking(user_id, venue, booking_start, duration_text, user_role, reason):
     venue_name = venue["name"].strip().lower()
@@ -42,8 +43,8 @@ def create_booking(user_id, venue, booking_start, duration_text, user_role, reas
             .eq("reason", reason) \
             .execute()
         new_booking_data = result.data[0] if result.data else None
-        if new_booking_data:
-            from notifications import notify_jcrc_of_new_request
+        if new_booking_data: 
+            print(new_booking_data)
             notify_jcrc_of_new_request(new_booking_data)
 
 def check_conflict(venue, new_booking_start, duration_text, user_id):

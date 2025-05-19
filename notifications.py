@@ -37,7 +37,7 @@ def notify_approval(booking):
             print(f"Failed to notify group {chat_id}: {e}")
 
 def notify_jcrc_of_new_request(booking):
-    jcrc_result = supabase.table("users").select("*").eq("role", "jcrc").execute()
+    jcrc_result = supabase.table("users").select("*").eq("role", "JCRC").execute()
     jcrc_users = jcrc_result.data if jcrc_result.data else []
     if not jcrc_users:
         return
